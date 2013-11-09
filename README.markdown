@@ -46,4 +46,6 @@ TO DO
 ------
 
 - Rewrite in CoffeeScript?
-- Use literate CoffeeScript?
+- Use literate CoffeeScript?  Or docco?  Or Codo?  Or CoffeeDoc
+- Add minify to process
+- Auto generate documentation from source
