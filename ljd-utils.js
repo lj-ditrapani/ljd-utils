@@ -78,6 +78,10 @@
         return document.createTextNode(text.toString());
     };
 
+    /** Append a single node to the element
+     * @param {HtmlElement} element
+     * @param {node} node
+     */
     function addOne(element, node) {
         if (typeof node === "string") {
             node = ljd.t(node);
@@ -115,9 +119,9 @@
         return node;
     };
 
-    ljd.set_text = function (node, value) {
+    ljd.setText = function (node, value) {
         ljd.removeAllChildren(node);
-        ljd.add(node, value.toString());
+        return ljd.add(node, value.toString());
     };
 
     // Probably just use coffeescript instead with its built in #{} format
