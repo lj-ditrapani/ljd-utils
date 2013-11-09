@@ -1,11 +1,13 @@
-/*global window, document, dom, put, $*/
+/*global window, document, ljd*/
 /** ------------------------------------------------------------------------
  * Author:  Lyall Jonathan Di Trapani
- * Exports $, put, and dom
+ * Exports ljd
  */
 
 (function () {
     'use strict';
+
+    window.ljd = {};
 
     /** Displays out as <li> item
      * out is the item to be output
@@ -15,26 +17,26 @@
      * @param {String} out
      * @param {String} message
      */
-    window.put = function (message, out) {
+    ljd.put = function (message, out) {
         if (!out) {
             out = message;
             message = "";
         } else {
             message += ": ";
         }
-        dom.add(put.getOutputUl(), dom.create("li", message + out));
+        ljd.add(ljd.put.getOutputUl(), ljd.create("li", message + out));
     };
 
-    put.getOutputUl = function () {
-        if (!put.outputUl) {
-            if ($("output_")) {
-                put.outputUl = $("output_");
+    ljd.put.getOutputUl = function () {
+        if (!ljd.put.outputUl) {
+            if (ljd.$("output_")) {
+                ljd.put.outputUl = ljd.$("output_");
             } else {
                 throw new Error("No <ul> with id='output_' Utils function" +
-                                " put() will not work");
+                                " ljd.put() will not work");
             }
         }
-        return put.outputUl;
+        return ljd.put.outputUl;
     };
 
 
@@ -42,17 +44,15 @@
      * @param {String} id
      * @param {Array} nodes
      */
-    window.$ = function (id, nodes) {
-        if (!$.cache[id]) {
-            $.cache[id] = document.getElementById(id);
+    ljd.$ = function (id, nodes) {
+        if (!ljd.$.cache[id]) {
+            ljd.$.cache[id] = document.getElementById(id);
         }
-        return dom.add($.cache[id], nodes);
+        return ljd.add(ljd.$.cache[id], nodes);
     };
 
-    $.cache = {};
+    ljd.$.cache = {};
 
-
-    window.dom = {};
 
     /** Creates an element of type "tagName" and assigns it any supplied 
      * attributes and appends all nodes in the array nodes
@@ -60,10 +60,10 @@
      * @param {Object} attributes (most optional)
      * @param {array} nodes (optional)
      * Alternative calling:
-     * dom.create(tagName)
-     * dom.create(tagName, nodes)
+     * ljd.create(tagName)
+     * ljd.create(tagName, nodes)
      */
-    dom.create = function (tagName, attributes, nodes) {
+    ljd.create = function (tagName, attributes, nodes) {
         var prop, newElement = document.createElement(tagName);
         if (!nodes && attributes) {
             nodes = attributes;
@@ -76,7 +76,7 @@
             }
         }
         if (nodes) {
-            return dom.add(newElement, nodes);
+            return ljd.add(newElement, nodes);
         }
         return newElement;
     };
@@ -84,13 +84,13 @@
     /** Creates a textNode containing text 
      * @param {string} text
      */
-    dom.t = function (text) {
+    ljd.t = function (text) {
         return document.createTextNode(text.toString());
     };
 
     function addOne(element, node) {
         if (typeof node === "string") {
-            node = dom.t(node);
+            node = ljd.t(node);
         }
         element.appendChild(node);
     }
@@ -101,7 +101,7 @@
      * @param {HtmlElement} element
      * @param {Array} nodes
      */
-    dom.add = function (element, nodes) {
+    ljd.add = function (element, nodes) {
         var i;
         if (nodes instanceof Array) {
             for (i = 0; i < nodes.length; i += 1) {
@@ -116,7 +116,7 @@
     /** removes all children from the node 
      * @param {HtmlElement} node
      */
-    dom.removeAllChildren = function (node) {
+    ljd.removeAllChildren = function (node) {
         if (node.hasChildNodes()) {
             while (node.childNodes.length >= 1) {
                 node.removeChild(node.firstChild);
@@ -125,9 +125,9 @@
         return node;
     };
 
-    dom.set_text = function (node, value) {
-        dom.removeAllChildren(node);
-        dom.add(node, value.toString());
+    ljd.set_text = function (node, value) {
+        ljd.removeAllChildren(node);
+        ljd.add(node, value.toString());
     };
 
     // Probably just use coffeescript instead with its built in #{} format
@@ -163,18 +163,18 @@
     };
     */
 
-    dom.hasClass = function (el, cls) {
+    ljd.hasClass = function (el, cls) {
         return el.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
     };
 
-    dom.addClass = function (el, cls) {
-        if (!dom.hasClass(el, cls)) {
+    ljd.addClass = function (el, cls) {
+        if (!ljd.hasClass(el, cls)) {
             el.className += " " + cls;
         }
     };
 
-    dom.removeClass = function (el, cls) {
-        if (dom.hasClass(el, cls)) {
+    ljd.removeClass = function (el, cls) {
+        if (ljd.hasClass(el, cls)) {
             var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
             el.className = el.className.replace(reg, ' ');
         }
