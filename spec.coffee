@@ -36,16 +36,6 @@ test '$ (get and add function)', ->
     equal pList.length, 3
 
 
-test 'Remove all children', ->
-    pList = [ljd.create('p'), ljd.create('p'), ljd.create('p')]
-    topDiv = ljd.$ 'qunit-fixture', pList
-    pList = topDiv.getElementsByTagName 'p'
-    equal pList.length, 3
-    ljd.removeAllChildren topDiv
-    ok not topDiv.hasChildNodes()
-    equal pList.length, 0
-
-
 test 'create', ->
     span1 = ljd.create 'span1'
     equal span1.attributes.length, 0, 'span1 no attributes'
@@ -64,6 +54,16 @@ test 'create', ->
     equal p4.attributes.length, 2, 'p4 2 attributes'
     deepEqual [p4.id, p4.className], ['cat', 'dog'], 'p4 attributes'
     equal p4.innerHTML, '<span>hello</span> there', 'p4 innerHTML'
+
+
+test 'Remove all children', ->
+    pList = [ljd.create('p'), ljd.create('p'), ljd.create('p')]
+    topDiv = ljd.$ 'qunit-fixture', pList
+    pList = topDiv.getElementsByTagName 'p'
+    equal pList.length, 3
+    ljd.removeAllChildren topDiv
+    ok not topDiv.hasChildNodes()
+    equal pList.length, 0
 
 
 test 'setText', ->

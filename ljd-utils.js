@@ -126,6 +126,7 @@
     };
 
     // Probably just use coffeescript instead with its built in #{}
+    /** Add python style format function to JavaScript string class */
     String.prototype.format = function () {
         var args = arguments;
         function f(match, number) {
@@ -137,17 +138,20 @@
         return this.replace(/{(\d+)}/g, f);
     };
 
+    /** true if HTML element el has class cls, else false */
     ljd.hasClass = function (el, cls) {
         var re = new RegExp('(\\s|^)' + cls + '(\\s|$)');
         return el.className.match(re);
     };
 
+    /** Adds class cls to HTML element el */
     ljd.addClass = function (el, cls) {
         if (!ljd.hasClass(el, cls)) {
             el.className += " " + cls;
         }
     };
 
+    /** Removes class cls from HTML element el */
     ljd.removeClass = function (el, cls) {
         if (ljd.hasClass(el, cls)) {
             var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
