@@ -28,31 +28,21 @@
     };
 
     ljd.put.getOutputUl = function () {
-        if (!ljd.put.outputUl) {
-            if (ljd.$("output_")) {
-                ljd.put.outputUl = ljd.$("output_");
-            } else {
-                throw new Error("No <ul> with id='output_' Utils function" +
-                                " ljd.put() will not work");
-            }
+        var ul = ljd.$('output_');
+        if (!ul) {
+            throw new Error("No <ul> with id='output_' ljd-utils " +
+                            "function put() will not work");
         }
-        return ljd.put.outputUl;
+        return ul;
     };
 
-
-    /** wraps document.getElementById, saves elements in cache
+    /** wraps document.getElementById; adds nodes as children of element
      * @param {String} id
      * @param {Array} nodes
      */
     ljd.$ = function (id, nodes) {
-        if (!ljd.$.cache[id]) {
-            ljd.$.cache[id] = document.getElementById(id);
-        }
-        return ljd.add(ljd.$.cache[id], nodes);
+        return ljd.add(document.getElementById(id), nodes);
     };
-
-    ljd.$.cache = {};
-
 
     /** Creates an element of type "tagName" and assigns it any supplied 
      * attributes and appends all nodes in the array nodes
