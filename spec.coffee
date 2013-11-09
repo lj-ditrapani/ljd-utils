@@ -73,3 +73,51 @@ test 'setText', ->
     equal topDiv.innerHTML, 'bye'
     ljd.setText topDiv, [1, 2, 3]
     equal topDiv.innerHTML, '1,2,3'
+
+
+test 'Sting.format', ->
+    equal '{0}:{1}'.format('key', 'value'), 'key:value'
+    equal '{1}-{0}-{2}-{0}-{3}'.format('|', 'a', 'b', 'c'), 'a-|-b-|-c'
+
+
+module 'ljd CSS class',
+    setup: ->
+        @p = ljd.create('p', {className: 'p-class'}, [])
+        @topDiv = ljd.$('qunit-fixture', @p)
+
+
+test 'hasClass', ->
+    ok not ljd.hasClass(@topDiv, 'p-class')
+    ok ljd.hasClass(@p, 'p-class')
+
+
+test 'addClass', ->
+    ok not ljd.hasClass(@topDiv, 'd-class')
+    ljd.addClass(@topDiv, 'd-class')
+    ok ljd.hasClass(@topDiv, 'd-class')
+    ljd.addClass(@topDiv, 'p-class')
+    ok ljd.hasClass(@topDiv, 'd-class')
+    ok ljd.hasClass(@topDiv, 'p-class')
+
+
+test 'removeClass 1 class', ->
+    ok ljd.hasClass(@p, 'p-class')
+    ljd.removeClass(@p, 'p-class')
+    ok not ljd.hasClass(@p, 'p-class')
+
+
+test 'removeClass 3 classes', ->
+    ljd.addClass(@p, 'q-class')
+    ljd.addClass(@p, 'r-class')
+    ok ljd.hasClass(@p, 'p-class')
+    ok ljd.hasClass(@p, 'q-class')
+    ok ljd.hasClass(@p, 'r-class')
+    ljd.removeClass(@p, 'p-class')
+    ok not ljd.hasClass(@p, 'p-class')
+    ok ljd.hasClass(@p, 'q-class')
+    ok ljd.hasClass(@p, 'r-class')
+    ljd.removeClass(@p, 'q-class')
+    ok not ljd.hasClass(@p, 'p-class')
+    ok not ljd.hasClass(@p, 'q-class')
+    ok ljd.hasClass(@p, 'r-class')
+

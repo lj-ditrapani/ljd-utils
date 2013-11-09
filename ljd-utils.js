@@ -1,5 +1,5 @@
 /*global window, document, ljd*/
-/** ------------------------------------------------------------------------
+/** --------------------------------------------------------------------
  * Author:  Lyall Jonathan Di Trapani
  * Exports ljd
  */
@@ -9,25 +9,25 @@
 
     window.ljd = {};
 
-    /** Displays out as <li> item
-     * out is the item to be output
-     * Message is the optional description to come before the "out"
+    /** Displays message as a <li> item
+     * message is the item to be output
+     * label is the optional description to come before the message
      * The HTML file must have an <ul> element with the id "output_"
      * to be able to see the output
-     * @param {String} out
      * @param {String} message
+     * @param {String} label
      */
-    ljd.put = function (message, out) {
-        if (!out) {
-            out = message;
-            message = "";
+    ljd.put = function (label, message) {
+        if (!message) {
+            message = label;
+            label = "";
         } else {
-            message += ": ";
+            label += ": ";
         }
-        ljd.add(ljd.put.getOutputUl(), ljd.create("li", message + out));
+        ljd.add(ljd.put.getUl(), ljd.create("li", label + message));
     };
 
-    ljd.put.getOutputUl = function () {
+    ljd.put.getUl = function () {
         var ul = ljd.$('output_');
         if (!ul) {
             throw new Error("No <ul> with id='output_' ljd-utils " +
@@ -44,7 +44,7 @@
         return ljd.add(document.getElementById(id), nodes);
     };
 
-    /** Creates an element of type "tagName" and assigns it any supplied 
+    /** Creates an element of type "tagName" and assigns it any supplied
      * attributes and appends all nodes in the array nodes
      * @param {String} tagName
      * @param {Object} attributes (most optional)
@@ -58,7 +58,8 @@
         if (!nodes && attributes) {
             nodes = attributes;
             attributes = null;
-        } else if (nodes && attributes && (typeof attributes === "object")) {
+        } else if (nodes && attributes &&
+                   (typeof attributes === "object")) {
             for (prop in attributes) {
                 if (attributes.hasOwnProperty(prop)) {
                     newElement[prop] = attributes[prop];
@@ -124,16 +125,7 @@
         return ljd.add(node, value.toString());
     };
 
-    // Probably just use coffeescript instead with its built in #{} format
-    /*
-    String.prototype.format = function(){
-        var pattern = /\{\d+\}/g;
-        var args = arguments;
-        var f = function(capture){ return args[capture.match(/\d+/)]; };
-        return this.replace(pattern, f);
-    }
-    */
-
+    // Probably just use coffeescript instead with its built in #{}
     String.prototype.format = function () {
         var args = arguments;
         function f(match, number) {
@@ -145,20 +137,9 @@
         return this.replace(/{(\d+)}/g, f);
     };
 
-    /*
-    String.prototype.format = function() {
-      var args = arguments;
-      return this.replace(/{(\d+)}/g, function(match, number) { 
-        return typeof args[number] != 'undefined'
-          ? args[number]
-          : match
-        ;
-      });
-    };
-    */
-
     ljd.hasClass = function (el, cls) {
-        return el.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+        var re = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+        return el.className.match(re);
     };
 
     ljd.addClass = function (el, cls) {
