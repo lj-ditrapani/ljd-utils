@@ -120,6 +120,8 @@
         return node;
     };
 
+    /** Removes all children from node and adds the string 
+     * representation of value as a textNode child of node */
     ljd.setText = function (node, value) {
         ljd.removeAllChildren(node);
         return ljd.add(node, value.toString());

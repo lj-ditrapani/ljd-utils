@@ -10,10 +10,10 @@ Exports a single global name, `ljd`.  All functions are hidden in the `ljd` name
 
 Functions
 ---------
-- **put(label, message)**  Displays message as a <li> item
+- **put(label, message)**  Displays message as a `<li>` item
     * message is the item to be output
     * label is the optional description to come before the message
-    * The HTML file must have an <ul> element with the id "`output_`"
+    * The HTML file must have an `<ul>` element with the id "`output_`"
       to be able to see the output
     * @param {String} message
     * @param {String} label
@@ -32,7 +32,8 @@ Functions
         + ljd.create(tagName, nodes)
 - **removeAllChildren(node)** removes all children from the node 
     * @param {HtmlElement} node
-- **setText**
+- **setText** Removes all children from node and adds the string 
+  representation of value as a textNode child of node
 - **String.format(arguments...)**  Add python style format function to
   JavaScript string class
 - **hasClass(el, cls)** true if HTML element el has class cls, else 
