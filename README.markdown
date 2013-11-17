@@ -1,15 +1,16 @@
 ljd-utils.js
-=============
+========================================================================
 
 Author:  Lyall Jonathan Di Trapani
 
 A small collection of simple, basic JavaScript utility functions.
 
-Exports a single global name, `ljd`.  All functions are hidden in the `ljd` name-space.  Also, adds format function to String type.
+Exports a single global name, `ljd`.  All functions are hidden in the 
+`ljd` name-space.  Also, adds format function to String type.
 
 
 Functions
----------
+------------------------------------------------------------------------
 - **put(label, message)**  Displays message as a `<li>` item
     * message is the item to be output
     * label is the optional description to come before the message
@@ -42,10 +43,22 @@ Functions
 - **removeClass(el, cls)** Removes class cls from HTML element el
 
 
+Tests
+------------------------------------------------------------------------
+Tests (specs) are written in [qUnit](http://qunitjs.com/).  You will
+need the qunit.js and qunit.css files to run the tests.  Just place them
+in the same directory as the spec.html file and open the spec.html file
+in a web browser.
+
+
 TO DO
-------
+------------------------------------------------------------------------
 
 - Rewrite in CoffeeScript?
 - Use literate CoffeeScript?  Or docco?  Or Codo?  Or CoffeeDoc
 - Add minify to process
 - Auto generate documentation from source
+- package-dev-support.sh to create ljd-utils-dev-support.zip; put on 
+  ditrapani.info/dev-resources
+- create ljd-utils.js (from coffee once translated) and put on 
+  ditrapani.info/resources
