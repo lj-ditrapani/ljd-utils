@@ -104,6 +104,7 @@ test 'removeClass 1 class', ->
   ok ljd.hasClass(@p, 'p-class')
   ljd.removeClass(@p, 'p-class')
   ok not ljd.hasClass(@p, 'p-class')
+  equal @p.className, ''
 
 
 test 'removeClass 3 classes', ->
@@ -112,12 +113,15 @@ test 'removeClass 3 classes', ->
   ok ljd.hasClass(@p, 'p-class')
   ok ljd.hasClass(@p, 'q-class')
   ok ljd.hasClass(@p, 'r-class')
+  equal @p.className, 'p-class q-class r-class'
   ljd.removeClass(@p, 'p-class')
   ok not ljd.hasClass(@p, 'p-class')
   ok ljd.hasClass(@p, 'q-class')
   ok ljd.hasClass(@p, 'r-class')
+  equal @p.className, 'q-class r-class'
   ljd.removeClass(@p, 'q-class')
   ok not ljd.hasClass(@p, 'p-class')
   ok not ljd.hasClass(@p, 'q-class')
   ok ljd.hasClass(@p, 'r-class')
+  equal @p.className, 'r-class'
 

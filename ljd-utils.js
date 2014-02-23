@@ -157,7 +157,7 @@
     ljd.removeClass = function (el, cls) {
         if (ljd.hasClass(el, cls)) {
             var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-            el.className = el.className.replace(reg, ' ');
+            el.className = el.className.replace(reg, '');
         }
     };
 
