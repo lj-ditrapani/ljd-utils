@@ -55,6 +55,7 @@ TO DO
 ------------------------------------------------------------------------
 
 - Rewrite in CoffeeScript?
+- Remove put() debug function; useless now that console.log is universal
 - Use literate CoffeeScript?  Or docco?  Or Codo?  Or CoffeeDoc
 - Add minify to process
 - Auto generate documentation from source
