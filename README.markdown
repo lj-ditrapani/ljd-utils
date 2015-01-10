@@ -11,13 +11,6 @@ Exports a single global name, `ljd`.  All functions are hidden in the
 
 Functions
 ------------------------------------------------------------------------
-- **put(label, message)**  Displays message as a `<li>` item
-    * message is the item to be output
-    * label is the optional description to come before the message
-    * The HTML file must have an `<ul>` element with the id "`output_`"
-      to be able to see the output
-    * @param {String} message
-    * @param {String} label
 - **$(id, nodes)**  wraps document.getElementById; adds nodes as 
   children of element
     * @param {String} id
@@ -55,7 +48,6 @@ TO DO
 ------------------------------------------------------------------------
 
 - Rewrite in CoffeeScript?
-- Remove put() debug function; useless now that console.log is universal
 - Use literate CoffeeScript?  Or docco?  Or Codo?  Or CoffeeDoc
 - Add minify to process
 - Auto generate documentation from source

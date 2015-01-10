@@ -4,30 +4,6 @@
 module 'ljd'
 
 
-test 'put', ->
-  ul = ljd.create 'ul', {id: 'output_'}, []
-  ljd.$ 'qunit-fixture', ul
-  message = 'Hello world!'
-  ljd.put message
-  list = ljd.$ 'output_'
-  listItems = list.getElementsByTagName 'li'
-  equal listItems.length, 1
-  equal listItems[0].innerHTML, message
-  message = 'Goodbye world!'
-  ljd.put message
-  listItems = list.getElementsByTagName 'li'
-  equal listItems.length, 2
-  equal listItems[1].innerHTML, message
-  ul.parentElement.removeChild ul
-  ul = null
-  ljd.removeAllChildren ljd.$('qunit-fixture')
-  ul = null
-
-
-test 'put with missing <ul id="output_"></ul>', ->
-  throws ( -> ljd.put('x')), /No <ul> with id='output_'/
-
-
 test '$ (get and add function)', ->
   pList = [ljd.create('p'), ljd.create('p'), ljd.create('p')]
   ljd.$ 'qunit-fixture', pList

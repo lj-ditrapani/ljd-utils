@@ -9,33 +9,6 @@
 
     window.ljd = {};
 
-    /** Displays message as a <li> item
-     * message is the item to be output
-     * label is the optional description to come before the message
-     * The HTML file must have an <ul> element with the id "output_"
-     * to be able to see the output
-     * @param {String} message
-     * @param {String} label
-     */
-    ljd.put = function (label, message) {
-        if (!message) {
-            message = label;
-            label = "";
-        } else {
-            label += ": ";
-        }
-        ljd.add(ljd.put.getUl(), ljd.create("li", label + message));
-    };
-
-    ljd.put.getUl = function () {
-        var ul = ljd.$('output_');
-        if (!ul) {
-            throw new Error("No <ul> with id='output_' ljd-utils " +
-                            "function put() will not work");
-        }
-        return ul;
-    };
-
     /** wraps document.getElementById; adds nodes as children of element
      * @param {String} id
      * @param {Array} nodes
