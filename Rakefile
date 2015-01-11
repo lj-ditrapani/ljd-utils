@@ -3,7 +3,7 @@ task default: [:lint, :test] do
 end
 
 desc 'Lint check JavaScript and CoffeeScript'
-task lint: [:jshint, :jslint, :coffeelint, :rubocop] do
+task lint: [:jshint, :jslint, :coffeelint] do
 end
 
 desc 'jshint'
