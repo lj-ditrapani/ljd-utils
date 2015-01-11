@@ -105,12 +105,12 @@
     String.prototype.format = function () {
         var args = arguments;
         function f(match, number) {
-            if (typeof args[number] !== 'undefined') {
+            if (args[number] !== undefined) {
                 return args[number];
             }
             return match;
         }
-        return this.replace(/{(\d+)}/g, f);
+        return this.replace(/\{(\d+)\}/g, f);
     };
 
     /** true if HTML element el has class cls, else false */
